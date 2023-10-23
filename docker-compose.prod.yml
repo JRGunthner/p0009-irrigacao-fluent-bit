@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  fluent-bit:
+    ports:
+      - "24224:24224"
+    environment:
+      - API_KEY=foo-bar

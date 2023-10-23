@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  fluent-bit:
+    build: .
+    image: fluent-bit:latest
+    container_name: fluent-bit
+    restart: unless-stopped
+    environment:
+      - COMPOSE_PROJECT_NAME=fluent-bit
+      - API_KEY=foo-bar
+    ports:
+      - "24224:24224"
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+    networks:
+      - docker
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "2"
+networks:
+  docker:
+    name: docker
